@@ -37,7 +37,9 @@ export const ExcuseProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
     try {
       const newExcuse = await generateExcuse(reason, type);
-      setExcuses([newExcuse, ...excuses]);
+const finalExcuse = typeof newExcuse === 'string' ? newExcuse : newExcuse.excuse;
+setExcuses([finalExcuse, ...excuses]);
+ 
       
       if (!isPremium) {
         setExcusesLeft(excusesLeft - 1);
